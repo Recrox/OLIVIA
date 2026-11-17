@@ -11,6 +11,7 @@ let BASE = process.env.BASE_URL; // set BASE_URL to test the live site; otherwis
 const local = !BASE;
 const VIEWPORTS = { phone: [375, 812], tablet: [768, 1024], laptop: [1366, 768], hd: [1440, 900], fhd: [1920, 1080], qhd: [2560, 1440] };
 const PAGES = ['/', '/carte/', '/offline/'];
+const CATS = ['restaurant', 'tapas', 'boissons', 'desserts', 'enfants'];
 const axeSource = fs.readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8');
 let browser;
 
@@ -41,16 +42,26 @@ for (const [name, [w, h]] of Object.entries(VIEWPORTS)) {
     page.on('pageerror', e => errors.push(e.message));
     page.on('console', m => m.type() === 'error' && errors.push(m.text()));
     page.on('response', r => r.status() >= 400 && !r.url().endsWith('/favicon.ico') && errors.push(`${r.status()} ${r.url()}`));
-    for (const path of PAGES) {
+    for (const path of [...PAGES, ...CATS.map(c => '/carte/#' + c)]) {
       await page.goto(BASE + path, { waitUntil: 'networkidle' });
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
       assert.ok(overflow <= 0, `${path}: horizontal overflow of ${overflow}px`);
       await page.evaluate(async () => { for (let y = 0; y < document.body.scrollHeight; y += 600) { scrollTo(0, y); await new Promise(r => setTimeout(r, 30)); } });
       await page.waitForLoadState('networkidle');
-      const broken = await page.$$eval('img', imgs => imgs.filter(i => !i.complete || i.naturalWidth === 0).map(i => i.currentSrc || i.src));
+      // only images actually displayed (other categories and folded groups are not rendered)
+      const broken = await page.$$eval('img', imgs => imgs.filter(i => i.getClientRects().length && (!i.complete || i.naturalWidth === 0)).map(i => i.currentSrc || i.src));
       assert.deepEqual(broken, [], `${path}: broken images`);
       const bar = await page.$eval('.action-bar', el => getComputedStyle(el).display);
       assert.equal(bar === 'none', w >= 720, `${path}: mobile action bar visibility`);
+      if (path.startsWith('/carte/')) {
+        // the owner asked for little scrolling: one category at a time, tabs on one line
+        const { height, rows } = await page.evaluate(() => ({
+          height: document.documentElement.scrollHeight / innerHeight,
+          rows: new Set([...document.querySelectorAll('.cat-nav a')].map(a => a.offsetTop)).size,
+        }));
+        assert.ok(height < 6, `${path}: ${height.toFixed(1)} screens tall`);
+        assert.equal(rows, 1, `${path}: tabs wrap on ${rows} lines`);
+      }
     }
     assert.deepEqual(errors, []);
     await page.close();
@@ -82,11 +93,37 @@ test('links: internal targets exist, phone and maps links are right', async () =
   await page.close();
 });
 
-test('menu page: tabs follow the scroll', async () => {
-  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+test('menu page: one category at a time, tabs, swipe and back button', async () => {
+  const page = await browser.newPage({ viewport: { width: 375, height: 812 }, hasTouch: true });
+  const shown = () => page.$$eval('.cat', cs => cs.filter(c => c.getClientRects().length).map(c => c.id));
   await page.goto(BASE + '/carte/');
+  assert.deepEqual(await shown(), ['restaurant']);
+  assert.equal(await page.getAttribute('.cat-nav a[href="#restaurant"]', 'aria-current'), 'true');
+
   await page.click('.cat-nav a[href="#desserts"]');
-  await page.waitForFunction(() => document.querySelector('.cat-nav a[href="#desserts"]').getAttribute('aria-current') === 'true', null, { timeout: 5000 });
+  await page.waitForFunction(() => document.querySelector('.cat-nav a[href="#desserts"]').getAttribute('aria-current') === 'true');
+  assert.deepEqual(await shown(), ['desserts']);
+
+  const swipe = dx => page.evaluate(dx => {
+    const el = document.querySelector('.carte-body');
+    const t = (x, y) => new Touch({ identifier: 1, target: el, clientX: x, clientY: y });
+    el.dispatchEvent(new TouchEvent('touchstart', { touches: [t(200, 400)], changedTouches: [t(200, 400)], bubbles: true }));
+    el.dispatchEvent(new TouchEvent('touchend', { touches: [], changedTouches: [t(200 + dx, 410)], bubbles: true }));
+  }, dx);
+  await swipe(-150);
+  await page.waitForFunction(() => location.hash === '#enfants');
+  assert.deepEqual(await shown(), ['enfants']);
+  await swipe(150);
+  await page.waitForFunction(() => location.hash === '#desserts');
+
+  await page.goBack();
+  await page.waitForFunction(() => location.hash === '#enfants');
+  assert.deepEqual(await shown(), ['enfants']);
+
+  // a link to a folded group opens it inside its category
+  await page.goto(BASE + '/carte/#boissons-chaudes');
+  assert.deepEqual(await shown(), ['boissons']);
+  assert.equal(await page.$eval('#boissons-chaudes', d => d.open), true);
   await page.close();
 });
 

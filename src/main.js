@@ -67,21 +67,34 @@ addEventListener('online', syncOnline);
 addEventListener('offline', syncOnline);
 syncOnline();
 
-// Menu: highlight the category being read and keep its tab in view.
+// Menu: one category at a time. CSS shows the :target category; this marks its tab,
+// opens a targeted group and lets a horizontal swipe move to the next or previous category.
 const tabs = [...document.querySelectorAll('.cat-nav a')];
 const cats = [...document.querySelectorAll('.cat')];
 if (tabs.length) {
-  let current, queued;
-  const update = () => {
-    queued = false;
-    // active = last category whose top has passed under the sticky bar
-    const i = Math.max(0, cats.findLastIndex(c => c.getBoundingClientRect().top <= 120));
-    if (i === current) return;
-    current = i;
-    tabs.forEach((a, j) => j === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
-    tabs[i].parentElement.scrollTo({ left: tabs[i].offsetLeft - 16, behavior: 'smooth' });
+  const current = () => {
+    const t = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+    if (t?.tagName === 'DETAILS') t.open = true;
+    return t?.closest('.cat') || cats[0];
   };
-  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
-  addEventListener('scroll', queue, { passive: true });
-  queue();
+  const sync = () => {
+    const c = current();
+    tabs.forEach(a => a.hash === '#' + c.id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+  };
+  addEventListener('hashchange', sync);
+  sync();
+  // Wide screens have room: unfold every group, except in very long categories (drinks).
+  if (matchMedia('(min-width: 1100px)').matches) {
+    for (const c of cats) if (c.querySelectorAll('.group').length <= 8) c.querySelectorAll('.group').forEach(g => { g.open = true; });
+  }
+
+  let x0, y0;
+  const body = document.querySelector('.carte-body');
+  body.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  body.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) < 70 || Math.abs(dx) < 2 * Math.abs(dy)) return; // a scroll, not a swipe
+    const next = cats[cats.indexOf(current()) + (dx < 0 ? 1 : -1)];
+    if (next) location.hash = next.id;
+  }, { passive: true });
 }

@@ -30,6 +30,7 @@ const ICONS = {
   route: '<polygon points="3 11 22 2 13 21 11 13 3 11"/>',
   book: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
   arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  chevron: '<path d="m6 9 6 6 6-6"/>',
   leaf: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
   flame: '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
   download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/>',
@@ -202,24 +203,32 @@ const dish = item => `<li class="dish${item.unavailable ? ' is-off' : ''}">
 
 const groupId = (cat, g) => g.id || `${cat.id}-${slug(g.title)}`;
 
-const category = (cat, index) => `<section class="cat" id="${cat.id}" aria-labelledby="${cat.id}-title">
+// Long categories fold their groups (first one open) so the page stays short; short ones stay open.
+const category = (cat, index, all) => {
+  const fold = cat.groups.length > 3;
+  const prev = all[index - 1], next = all[index + 1];
+  return `<section class="cat" id="${cat.id}" aria-labelledby="${cat.id}-title">
   <header class="cat-head${cat.image ? ' has-img' : ''}">
     <div>
       <h2 class="display-2" id="${cat.id}-title">${esc(cat.title)}</h2>
       <p class="lead">${esc(cat.summary)}</p>
     </div>
-    ${cat.image ? picture(cat.image.src, cat.image.alt, { sizesAttr: '(min-width: 720px) 400px, 100vw', cls: 'cat-img', eager: index === 0 }) : ''}
+    ${cat.image ? picture(cat.image.src, cat.image.alt, { sizesAttr: '(min-width: 720px) 320px, 100vw', cls: 'cat-img', eager: index === 0 }) : ''}
   </header>
-  ${cat.groups.length > 3 ? `<nav class="chips" aria-label="${esc(cat.title)} : rubriques">${cat.groups.map(g => `<a href="#${groupId(cat, g)}">${esc(g.title)}</a>`).join('')}</nav>` : ''}
   <div class="groups">
-    ${cat.groups.map(g => `<section class="group${g.featured ? ' is-featured' : ''}" id="${groupId(cat, g)}">
-      <h3 class="group-title">${esc(g.title)}</h3>
+    ${cat.groups.map((g, i) => `<details class="group${g.featured ? ' is-featured' : ''}" id="${groupId(cat, g)}"${!fold || i === 0 ? ' open' : ''}>
+      <summary><h3 class="group-title">${esc(g.title)}</h3><span class="group-count">${g.items.length}<span class="sr"> articles</span></span>${icon('chevron', 'icon chevron')}</summary>
       ${g.note ? `<p class="group-note">${esc(g.note)}</p>` : ''}
       <ul class="dishes">${g.items.map(dish).join('')}</ul>
-    </section>`).join('\n')}
+    </details>`).join('\n')}
     ${cat.seeAlso ? `<p class="see-also"><a class="link-arrow" href="${cat.seeAlso.href}">${esc(cat.seeAlso.label)}${icon('arrow')}</a></p>` : ''}
   </div>
+  <nav class="cat-pager" aria-label="Rubrique précédente ou suivante">
+    ${prev ? `<a href="#${prev.id}" class="btn btn-ghost">${icon('arrow', 'icon flip')}${esc(prev.title)}</a>` : '<span></span>'}
+    ${next ? `<a href="#${next.id}" class="btn btn-ghost">${esc(next.title)}${icon('arrow')}</a>` : ''}
+  </nav>
 </section>`;
+};
 
 // ---------- pages ----------
 const featured = menu.categories.flatMap(c => c.groups.filter(g => g.featured).flatMap(g => g.items.map(i => ({ ...i, cat: c.title }))));
