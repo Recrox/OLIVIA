@@ -1,0 +1,539 @@
+{
+  "updated": "2026-11-17",
+  "tagLabels": {
+    "veg": "Végétarien",
+    "spicy": "Pimenté",
+    "coeur": "Coup de cœur",
+    "maison": "Fait maison",
+    "belge": "Belge",
+    "bio": "Bio",
+    "signature": "Signature d'Olivia"
+  },
+  "categories": [
+    {
+      "id": "restaurant",
+      "title": "Restaurant",
+      "summary": "Suggestions, salades, pâtes, burgers, viandes et poissons",
+      "image": { "src": "burger-olivia", "alt": "L'Olivia Burger et ses frites dans un pot en métal" },
+      "groups": [
+        {
+          "title": "Les suggestions",
+          "featured": true,
+          "items": [
+            { "name": "Pappardelle pleurotes, foie gras et Parme", "price": 28 },
+            { "name": "Escalope boscaiola", "desc": "Taleggio et Parme, crème de champignons forestiers", "price": 25 },
+            { "name": "Burger oriental", "desc": "Haché d'agneau mode merguez, cheddar, légumes du Sud, sauce légèrement relevée", "price": 20 },
+            { "name": "Salade mexicaine", "desc": "Poulet, gambas, vinaigrette à l'avocat, maïs et poivrons", "price": 22 },
+            { "name": "Espadon en croûte de pistache à la sicilienne", "desc": "Et son risotto citronné", "price": 26, "unavailable": true }
+          ]
+        },
+        {
+          "title": "Les salades",
+          "items": [
+            { "name": "Salade chèvre et lardons", "desc": "Brick de chèvre, lardons et pomme, vinaigrette au sirop de Liège", "price": 20 },
+            { "name": "Salade italienne", "desc": "Bruschettas, jambon de Parme, burrata, olives, pignons de pin, parmesan, salade", "price": 20 },
+            { "name": "Salade César", "desc": "Poulet grillé, croûtons, tomates, salade, parmesan, véritable sauce César maison", "price": 19 }
+          ]
+        },
+        {
+          "title": "Les pâtes",
+          "items": [
+            { "name": "Pappardelle pistache et burrata", "desc": "Pappardelle, crème de pistaches, concassé de pistaches, burrata, pesto rouge", "price": 23, "tags": ["veg"] },
+            { "name": "Linguine à la trapanese", "desc": "Gambas, sauce tomates cerises et aromates", "price": 23 },
+            { "name": "Conchiglioni aux 2 saumons", "desc": "Pâtes farcies au saumon, sauce tomatée, burrata, saumon fumé", "price": 23 },
+            { "name": "Tortellacci truffe", "desc": "Raviolis farcis à la truffe, jambon de Parme, poêlée de légumes, sauce à la truffe, pesto rouge, concassé de pistaches", "price": 23 }
+          ]
+        },
+        {
+          "title": "Les burgers",
+          "items": [
+            { "name": "Olivia Burger", "desc": "Pain lardons et emmental, hamburger 100 % pur bœuf cuit à point, bacon, cheddar, oignons, tomates, cornichons, salade, sauce Olivia (secrète), frites", "price": 19.5, "tags": ["signature"] },
+            { "name": "Chicken Burger", "desc": "Pain au maïs, filet de poulet pané au panko par le chef, cheddar, oignons, tomates, cornichons, salade, sauce miel-moutarde, frites", "price": 19.5 },
+            { "name": "Burger pulled pork", "desc": "Pain brioché, effiloché de porc cuit à basse température, cheddar, oignons, tomates, cornichons, salade, sauce barbecue maison, frites", "price": 20 },
+            { "name": "Veggie Burger", "desc": "Pain brioché, poêlée de légumes, cheddar, oignons, tomates, cornichons, pesto vert, frites", "price": 16, "tags": ["veg"] }
+          ]
+        },
+        {
+          "title": "Les viandes",
+          "note": "Accompagnements : frites, riz ou pommes de terre grenaille",
+          "items": [
+            { "name": "Tartare Olivia", "desc": "Bœuf, coppa, foie gras, noisettes et tartuffata", "price": 28, "tags": ["signature"] },
+            { "name": "Pièce du boucher et légumes chauds", "desc": "Pavé de bœuf argentin, sauce au choix : poivre ou champignons", "price": 26 },
+            { "name": "Entrecôte et légumes chauds", "desc": "Sauce au choix : poivre ou champignons", "price": 30 },
+            { "name": "Pluma iberico", "desc": "Viande de porc premium, sauce tomatée-chorizo, poêlée de légumes", "price": 29 },
+            { "name": "Magret de canard sauce Marsala", "desc": "Et sa poire confite, accompagné de légumes chauds", "price": 25 },
+            { "name": "Tataki de bœuf", "desc": "Émincé de bœuf mariné et snacké, sauce soja", "price": 25 }
+          ]
+        },
+        {
+          "title": "Les poissons",
+          "items": [
+            { "name": "Filet de bar alla genovese", "desc": "Filet de bar rôti, pesto du chef (pignons de pin, aromates, baies roses), citron, pommes grenaille", "price": 25 },
+            { "name": "Pavé de saumon snacké aux graines de sésame", "desc": "Servi avec une sauce miel citronnée et légumes de saison", "price": 23 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tapas",
+      "title": "Tapas",
+      "summary": "Classiques, planches à partager, poissons et viandes",
+      "image": { "src": "planche-italienne", "alt": "Planche italienne : charcuteries, bruschettas, burrata, brochettes et pâtes truffées" },
+      "groups": [
+        {
+          "title": "Suggestions",
+          "featured": true,
+          "items": [
+            { "name": "Gravlax de bœuf", "desc": "Sur pain toasté et sa mayonnaise truffée", "price": 17 }
+          ]
+        },
+        {
+          "title": "Nos classiques",
+          "items": [
+            { "name": "Beignets de fleurs de courgette", "desc": "Accompagnés d'une crème de truffe, crème de pistaches, concassé de pistaches, parmesan, pesto rouge", "price": 17, "tags": ["veg"] },
+            { "name": "Patatas bravas", "desc": "Pommes de terre coupées et frites, sauce brava", "price": 8.5, "tags": ["veg"] },
+            { "name": "Assiette nachos", "desc": "Chips de maïs mexicains, cheddar fondu, dés de tomates, piments", "price": 10, "tags": ["spicy", "veg"] },
+            { "name": "Calamars frits", "desc": "Calamars panés et frits maison, sauce tartare maison, salade", "price": 16 },
+            { "name": "Bruschettas et burrata", "desc": "Tranches de pain rôties à l'ail, dés de tomates, burrata, salade", "price": 14, "tags": ["veg"] },
+            { "name": "Bruschettas et Parme", "desc": "Tranches de pain rôties à l'ail, dés de tomates, jambon de Parme, salade", "price": 14 },
+            { "name": "Trio de croquettes ibériques faites maison", "desc": "Effiloché de porc, sauce chorizo", "price": 16 },
+            { "name": "Nuggets du chef", "desc": "Nuggets de poulet maison panés au panko, salade, sauce tartare maison", "price": 14 }
+          ]
+        },
+        {
+          "title": "Nos planches à partager",
+          "items": [
+            { "name": "Planche italienne", "desc": "Charcuteries italiennes, pâtes truffées, brochettes d'agneau, calamars frits, bruschettas, burrata", "price": 34 },
+            { "name": "Planche océane", "desc": "Saumon fumé, saumon gravlax, croquette de crevettes, calamars frits, crevette bouquet et gambas à la sicilienne", "price": 42 }
+          ]
+        },
+        {
+          "title": "Nos petites planchettes",
+          "items": [
+            { "name": "Planchette mixte", "desc": "Charcuteries italiennes, fromage et olives", "price": 16 },
+            { "name": "Planchette de fromages", "desc": "Assortiment de fromages sélectionnés par le chef, raisins, noix", "price": 16 },
+            { "name": "Planchette charcuteries", "desc": "Coppa, salami italien, jambon de Parme", "price": 16 }
+          ]
+        },
+        {
+          "title": "Nos tapas de poissons",
+          "items": [
+            { "name": "Saumon gravlax fait maison", "price": 17 },
+            { "name": "Gambas à la sicilienne", "desc": "Gambas, beurre tomates confites à l'ail, pignons de pin, herbes fraîches", "price": 16 },
+            { "name": "Duo de croquettes de crevettes faites maison", "price": 16 }
+          ]
+        },
+        {
+          "title": "Nos tapas de viandes",
+          "items": [
+            { "name": "Tacos à l'effiloché de porc", "desc": "Sauce chorizo", "price": 15 },
+            { "name": "Boulettes à l'oriental", "desc": "Pruneaux, carottes, raisins secs et épices orientales", "price": 16 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "boissons",
+      "title": "Boissons",
+      "summary": "Softs, bières belges, vins, cocktails, alcools et boissons chaudes",
+      "groups": [
+        {
+          "title": "Les eaux",
+          "items": [
+            { "name": "Chaudfontaine plate", "prices": [["25 cl", 2.7], ["50 cl", 4.6]] },
+            { "name": "Chaudfontaine pétillante", "prices": [["25 cl", 2.7], ["50 cl", 4.6]] }
+          ]
+        },
+        {
+          "title": "Les softs",
+          "items": [
+            { "name": "Coca-Cola", "desc": "20 cl · Regular ou Zéro", "price": 3 },
+            { "name": "Coca Cherry", "desc": "20 cl", "price": 3 },
+            { "name": "Fanta Orange", "desc": "20 cl", "price": 3 },
+            { "name": "Sprite", "desc": "20 cl", "price": 3 },
+            { "name": "Fuze Tea", "desc": "20 cl · Black, Peach ou Green", "price": 3 },
+            { "name": "Royal Bliss", "desc": "20 cl · Tonic, Agrumes, Bitter Lemon ou Pink Berry", "price": 3 },
+            { "name": "Aquarius", "desc": "20 cl", "price": 3.3 },
+            { "name": "Thomas Henry", "desc": "20 cl · Ginger Beer, Cherry Blossom, Ginger Ale, Botanical Tonic, Pink Grapefruit, Indian Tonic ou Watermelon", "price": 4.5 },
+            { "name": "Red Bull", "desc": "25 cl", "price": 4.5 },
+            { "name": "Crodo Oran soda", "desc": "20 cl", "price": 3.3 },
+            { "name": "Crodo Lemon soda", "desc": "20 cl", "price": 3.3 }
+          ]
+        },
+        {
+          "title": "Les jus",
+          "items": [
+            { "name": "Minute Maid", "desc": "25 cl · Orange, Ace, Pomme, Pomme-Cerise, Ananas ou Tomate", "price": 3 },
+            { "name": "Jus d'orange frais pressé", "price": 4.5 }
+          ]
+        },
+        {
+          "title": "Les bières au fût",
+          "items": [
+            { "name": "Stella", "desc": "4,5°", "prices": [["25 cl", 3], ["33 cl", 3.5], ["50 cl", 5.5]] },
+            { "name": "Chouffe Blonde", "desc": "8°", "prices": [["25 cl", 4], ["33 cl", 5], ["50 cl", 7.5]] },
+            { "name": "Saison Dupont Bio blonde", "desc": "5,5° · Dupont, Tourpes", "prices": [["25 cl", 4], ["33 cl", 5], ["50 cl", 7.5]] },
+            { "name": "Kasteel Tropical", "desc": "7° · saveur fruits exotiques · Van Honsebrouck, Izegem", "prices": [["25 cl", 4.5], ["33 cl", 6], ["50 cl", 9]] },
+            { "name": "St-Feuillien Grand Cru", "desc": "9,5°", "prices": [["25 cl", 5], ["33 cl", 7], ["50 cl", 10]] },
+            { "name": "Bonsecours Prestige blonde triple", "desc": "9° · Caulier, Bonsecours", "prices": [["33 cl", 7], ["50 cl", 10]] },
+            { "name": "Tournay blonde", "desc": "6,7° · Cazeau, Templeuve", "prices": [["25 cl", 4], ["33 cl", 5], ["50 cl", 8]] },
+            { "name": "Liefmans on the rocks", "desc": "3,5°", "prices": [["25 cl", 4.5]] }
+          ]
+        },
+        {
+          "title": "Les bières en bouteille",
+          "items": [
+            { "name": "Chimay Bleue", "desc": "9° · 33 cl", "price": 5.5 },
+            { "name": "Corona", "desc": "4,5° · 33 cl", "price": 5 },
+            { "name": "Duvel", "desc": "8,5° · 33 cl", "price": 5 },
+            { "name": "Duvel Triple Hop", "desc": "9,5° · 33 cl", "price": 6 },
+            { "name": "Hoegaarden blanche", "desc": "4,9° · 25 cl", "price": 4 },
+            { "name": "Hoegaarden rosé", "desc": "3° · 25 cl", "price": 4 },
+            { "name": "Kasteel rouge", "desc": "8° · 33 cl", "price": 5 },
+            { "name": "Kasteel Rubus", "desc": "8° · 33 cl", "price": 5 },
+            { "name": "Leffe blonde", "desc": "6,6° · 33 cl", "price": 4.5 },
+            { "name": "Leffe brune", "desc": "6,5° · 33 cl", "price": 4.5 },
+            { "name": "Moinette", "desc": "8,5° · 75 cl", "price": 12 },
+            { "name": "Orval", "desc": "6,2° · 33 cl", "price": 6 },
+            { "name": "Omer", "desc": "7° · 33 cl", "price": 6 },
+            { "name": "Paix Dieu", "desc": "10° · 33 cl", "price": 6 },
+            { "name": "Quintine ambrée", "desc": "8,5° · 33 cl", "price": 5.5 },
+            { "name": "Quintine blonde", "desc": "8° · 33 cl", "price": 5.5 },
+            { "name": "St-Louis Gueuze", "desc": "4,5° · 25 cl", "price": 4 },
+            { "name": "Kriek", "desc": "3,2° · 25 cl", "price": 4 },
+            { "name": "Pêche", "desc": "2,6° · 25 cl", "price": 4 },
+            { "name": "Tournay Blonde", "desc": "6,7° · 33 cl", "price": 5 },
+            { "name": "Triple Karmeliet", "desc": "8,4° · 33 cl", "price": 5 },
+            { "name": "Triple Westmalle", "desc": "9,5° · 33 cl", "price": 5 },
+            { "name": "Vedett", "desc": "6° · 33 cl", "price": 4.5 },
+            { "name": "XX Bitter (IPA)", "desc": "6° · 33 cl", "price": 5 }
+          ]
+        },
+        {
+          "title": "Les bières sans alcool",
+          "items": [
+            { "name": "Corona 0,0°", "desc": "33 cl", "price": 5 },
+            { "name": "Liefmans Fruitesse 0,0°", "desc": "25 cl", "price": 4 },
+            { "name": "Stella Artois 0,0°", "desc": "25 cl", "price": 3 },
+            { "name": "Triple Karmeliet 0,0°", "desc": "33 cl", "price": 5 },
+            { "name": "Kasteel Tropical 0,0°", "price": 5 },
+            { "name": "Chouffe 0,0°", "price": 4.5 }
+          ]
+        },
+        {
+          "title": "Vins blancs au verre",
+          "items": [
+            { "name": "Les Collines de Perchade", "desc": "Les Landes · vin moelleux", "prices": [["verre", 5], ["bouteille", 25]] },
+            { "name": "L'Or des Vignes", "desc": "Chardonnay, Pays d'Oc · vin sec", "prices": [["verre", 5], ["bouteille", 25]] },
+            { "name": "Luna Lunera", "desc": "Sauvignon, Espagne · vin floral", "prices": [["verre", 5], ["bouteille", 25]] },
+            { "name": "Petit Paradis", "desc": "Saint-Chinian", "prices": [["verre", 6], ["bouteille", 30]], "tags": ["coeur"] }
+          ]
+        },
+        {
+          "title": "Vins blancs en bouteille",
+          "items": [
+            { "name": "Big Boys", "desc": "Chardonnay, Puglia, Italie · vin bio", "price": 30, "tags": ["bio"] },
+            { "name": "Albariño", "desc": "Assemblage Pays d'Oc · vin bio minéral", "price": 30, "tags": ["bio"] },
+            { "name": "Domaine Beau Mistral", "desc": "Côtes du Rhône Villages", "price": 50 },
+            { "name": "Monopole Clos la Folie", "desc": "Bourgogne Aligoté", "price": 50 },
+            { "name": "Mâcon-Lugny", "desc": "Domaine de Quintefeuille 2023, Bourgogne", "price": 45 },
+            { "name": "Citadelle", "desc": "Domaine du Chenoy 2025 · vin belge et bio", "price": 40, "tags": ["belge", "bio"] },
+            { "name": "Normand", "desc": "Pouilly-Fuissé 2021", "price": 65 }
+          ]
+        },
+        {
+          "title": "Vins rosés au verre",
+          "items": [
+            { "name": "Amor d'Olivia", "desc": "France", "prices": [["verre", 5], ["bouteille", 25]], "tags": ["coeur"] },
+            { "name": "Le Cri Gris", "desc": "Rosé sec, Pays d'Oc 2025", "prices": [["verre", 5], ["bouteille", 25]] }
+          ]
+        },
+        {
+          "title": "Vins rosés en bouteille",
+          "items": [
+            { "name": "El Picoteo", "desc": "Espagne · vin bio fruité", "price": 25, "tags": ["bio"] },
+            { "name": "Les Coquelicots", "desc": "Domaine de Rousset, Haute-Provence · vin fruité", "price": 25 }
+          ]
+        },
+        {
+          "title": "Vins rouges au verre",
+          "items": [
+            { "name": "Domaine de la Bastide", "desc": "Côtes du Rhône", "prices": [["verre", 5], ["bouteille", 25]] },
+            { "name": "Domaine de Martinolles", "desc": "2024, Pinot noir, Pays d'Oc · rouge frais", "prices": [["verre", 6], ["bouteille", 30]] },
+            { "name": "The Chocolate Tube", "desc": "Primitivo, Puglia, Italie", "prices": [["verre", 6], ["bouteille", 30]] },
+            { "name": "Luna Lunera", "desc": "Syrah, Espagne 2023", "prices": [["verre", 5], ["bouteille", 25]] }
+          ]
+        },
+        {
+          "title": "Vins rouges en bouteille",
+          "items": [
+            { "name": "El Picaro", "desc": "Matsu 2022, Espagne", "price": 30 },
+            { "name": "Indomita", "desc": "Carménère 2019, Chili", "price": 25 },
+            { "name": "Colossal Reserva", "desc": "Casa Santos Lima 2018, Portugal", "price": 30 },
+            { "name": "Château Haut-Vigneau", "desc": "Côtes de Bordeaux 2019", "price": 40 },
+            { "name": "Domaine Olivier", "desc": "Saint-Nicolas-de-Bourgueil 2020 · rouge frais", "price": 40 },
+            { "name": "Laurent Combier", "desc": "Crozes-Hermitage 2022 · vin bio", "price": 60, "tags": ["bio"] },
+            { "name": "Château du Rooy", "desc": "Pécharmant 2022", "price": 45 },
+            { "name": "Hautes-Côtes de Nuits", "desc": "Les Colombières, Bourgogne 2022", "price": 70 },
+            { "name": "Château Picque Caillou", "desc": "Grand vin de Graves, Pessac-Léognan 2020", "price": 80 },
+            { "name": "Beaune 1er Cru", "desc": "Domaine Marchand de Gramont, Bourgogne 2023", "price": 80 }
+          ]
+        },
+        {
+          "title": "Les bulles",
+          "items": [
+            { "name": "Prosecco brut", "desc": "Bottega", "prices": [["coupe", 7], ["bouteille", 35]] },
+            { "name": "La Perle de Wallonie", "desc": "Bulles belges brutes · Domaine du Chenoy · à découvrir absolument", "prices": [["coupe", 9], ["bouteille", 50]], "tags": ["belge"] },
+            { "name": "Champagne Palmes d'Or brut", "desc": "Nicolas Feuillatte, 2006", "prices": [["bouteille", 250]] }
+          ]
+        },
+        {
+          "title": "Les apéritifs",
+          "items": [
+            { "name": "Batida Coco", "price": 6 },
+            { "name": "Campari", "price": 7 },
+            { "name": "Get 27", "price": 6 },
+            { "name": "Kir", "price": 6 },
+            { "name": "Martini", "desc": "Blanc, Rouge, Fiero ou Rosato", "price": 6 },
+            { "name": "Malibu", "price": 6 },
+            { "name": "Passoa", "price": 6 },
+            { "name": "Picon bière", "price": 7 },
+            { "name": "Picon vin blanc", "price": 7 },
+            { "name": "Pineau des Charentes", "price": 5 },
+            { "name": "Pisang", "price": 6 },
+            { "name": "Porto Offley", "desc": "Rouge ou Blanc", "price": 6 },
+            { "name": "Ricard", "price": 5 }
+          ]
+        },
+        {
+          "title": "Les cocktails apéritifs",
+          "items": [
+            { "name": "Le Spritz d'Olivia", "desc": "Le parfait mélange entre spritz et pornstar martini", "price": 11, "tags": ["signature"] },
+            { "name": "Apérol Spritz", "price": 9 },
+            { "name": "Hugo Spritz", "desc": "Fleur de sureau", "price": 10 },
+            { "name": "Sprezza Spritz", "price": 10 },
+            { "name": "Sarti Rosa Spritz", "price": 10 },
+            { "name": "Campari Spritz", "price": 11 },
+            { "name": "Limoncello di Capri Spritz", "price": 10 },
+            { "name": "Martini Blanc ou Rosato spritz", "price": 9 },
+            { "name": "Lillet Blanc ou Rosé spritz", "price": 8 },
+            { "name": "Martini Blanc ou Rosé tonic", "price": 8 },
+            { "name": "Martini Fiero Agrumes", "price": 8 },
+            { "name": "Martini Bellini", "price": 8 }
+          ]
+        },
+        {
+          "title": "Les gin tonic",
+          "items": [
+            { "name": "Larios Méditerranée", "price": 12 },
+            { "name": "Larios Cherry Blossom", "price": 12.5 },
+            { "name": "Suntory Roku", "price": 13 },
+            { "name": "Suika Watermelon", "desc": "Gin Roku, Thomas Henry Watermelon, menthe", "price": 14 },
+            { "name": "Bulldog", "price": 12 },
+            { "name": "Bombay Sapphire", "price": 12 },
+            { "name": "Panda", "price": 13 },
+            { "name": "Monkey 47", "price": 16 },
+            { "name": "Hendrick's", "price": 15 }
+          ]
+        },
+        {
+          "title": "Les cocktails classiques",
+          "items": [
+            { "name": "Mojito", "desc": "Rhum, sucre, citron vert et menthe fraîche", "price": 9 },
+            { "name": "Mojito fraise, framboise ou passion", "price": 10 },
+            { "name": "Caipirinha", "desc": "Rhum brésilien, sucre et citron vert", "price": 9 },
+            { "name": "Cuba Libre", "desc": "Rhum brun, citron vert et Coca-Cola", "price": 8.5 },
+            { "name": "Tequila Sunrise", "desc": "Tequila, orange et grenadine", "price": 9.5 },
+            { "name": "Paloma Tequila", "desc": "Tequila, citron vert et limonade pamplemousse rose", "price": 10 },
+            { "name": "Amaretto Sour", "desc": "Amaretto, sucre et citron vert", "price": 9 },
+            { "name": "Moscow Mule", "desc": "Vodka, citron vert et ginger beer", "price": 11.5 },
+            { "name": "Highball Watermelon", "desc": "Vodka, tonic pastèque", "price": 12 },
+            { "name": "Jamaican Mule", "desc": "Rhum brun, citron vert et ginger beer", "price": 11.5 },
+            { "name": "Bloody Mary", "desc": "Vodka et jus de tomate", "price": 10 },
+            { "name": "Cosmopolitan", "desc": "Vodka, Cointreau et jus de cranberry", "price": 12 },
+            { "name": "Jim Beam Ale", "desc": "Bourbon et ginger ale", "price": 10 },
+            { "name": "Pornstar Martini", "price": 13.5 }
+          ]
+        },
+        {
+          "title": "Les mocktails (sans alcool)",
+          "items": [
+            { "name": "Martini Floreale Tonic", "price": 7 },
+            { "name": "Martini Vibrante Tonic", "price": 7 },
+            { "name": "Gin Botaniets et tonic", "price": 9 },
+            { "name": "Virgin Mojito", "price": 8 },
+            { "name": "Virgin Mojito passion, framboise ou fraise", "price": 9 },
+            { "name": "Crodino", "desc": "Rosso ou Biondo", "price": 7 },
+            { "name": "Zenzero", "desc": "Crodino Biondo et ginger beer", "price": 8 },
+            { "name": "Virgin Amaretto Sour", "price": 8 },
+            { "name": "Virgin Pisang orange", "price": 7 },
+            { "name": "Limoncello Spritz 0 %", "price": 8 },
+            { "name": "Apérol Spritz 0 %", "price": 8 }
+          ]
+        },
+        {
+          "title": "Rhum",
+          "items": [
+            { "name": "Havana blanc", "price": 6.5 },
+            { "name": "Havana brun", "price": 7 },
+            { "name": "El Cabron Spiced", "price": 10 },
+            { "name": "El Cabron XO 7 ans", "price": 12 }
+          ]
+        },
+        {
+          "title": "Whisky",
+          "items": [
+            { "name": "William Lawson", "price": 6 },
+            { "name": "Connemara Peated Smoke", "desc": "Irlande · 5 cl", "price": 9 },
+            { "name": "Laphroaig Select Single Malt", "desc": "Écosse · 5 cl", "price": 9 },
+            { "name": "Bowmore 12 ans Single Malt", "desc": "Écosse · 5 cl", "price": 12 },
+            { "name": "Benromach 15 ans Single Malt", "desc": "Écosse · 5 cl", "price": 17 }
+          ]
+        },
+        {
+          "title": "Bourbon, tequila et vodka",
+          "items": [
+            { "name": "Jim Beam White", "price": 7 },
+            { "name": "Jim Beam Honey", "price": 8 },
+            { "name": "Jim Beam Apple", "price": 8 },
+            { "name": "Tequila Camino", "price": 6 },
+            { "name": "Żubrówka blanc", "price": 6 },
+            { "name": "Żubrówka rosé", "price": 6 },
+            { "name": "Eristoff rouge", "price": 6 }
+          ]
+        },
+        {
+          "title": "Les digestifs",
+          "items": [
+            { "name": "Amaretto", "price": 7 },
+            { "name": "Baileys", "price": 7 },
+            { "name": "Cointreau", "price": 7 },
+            { "name": "Cognac", "price": 8 },
+            { "name": "Sambuca Molinari", "price": 8 },
+            { "name": "Mandarine Napoléon", "price": 8 },
+            { "name": "Licor 43", "price": 7 },
+            { "name": "Poire cognac", "price": 8 },
+            { "name": "Limoncello di Capri", "price": 7 },
+            { "name": "Vodka Belvédère café" },
+            { "name": "Poire Williams", "price": 9 },
+            { "name": "Grappa", "price": 9 },
+            { "name": "Armagnac", "price": 9 }
+          ]
+        },
+        {
+          "id": "boissons-chaudes",
+          "title": "Les cafés",
+          "note": "Nos lattes sont aussi disponibles en version frappée, à découvrir absolument",
+          "items": [
+            { "name": "Café", "price": 3 },
+            { "name": "Espresso", "price": 3 },
+            { "name": "Double espresso", "price": 4.5 },
+            { "name": "Latte macchiato", "price": 4.3 },
+            { "name": "Cappuccino", "desc": "Mousse de lait", "price": 3.5 },
+            { "name": "Café viennois", "desc": "Chantilly", "price": 3.5 },
+            { "name": "Lait russe", "price": 4.3 },
+            { "name": "Latte macchiato spéculoos", "desc": "Sirop de spéculoos et brisures de spéculoos", "price": 4.7 },
+            { "name": "Latte macchiato caramel au beurre salé", "desc": "Caramel maison", "price": 4.7, "tags": ["maison"] },
+            { "name": "Latte macchiato « Amandes Forever »", "desc": "Sirop d'orgeat et amandes grillées", "price": 4.7 },
+            { "name": "Latte macchiato noisettes", "desc": "Sirop de noisettes et éclats de noisettes", "price": 4.7 }
+          ]
+        },
+        {
+          "title": "Les thés",
+          "note": "Du Comptoir des Thés, Tournai",
+          "items": [
+            { "name": "Thé noir Darjeeling", "desc": "Premium aromatique, première récolte de printemps · Inde", "price": 3.3 },
+            { "name": "Thé vert Sencha Grade 1 Dao Ren Feng", "desc": "Sencha travaillé selon des méthodes traditionnelles japonaises · Chine", "price": 3.3 },
+            { "name": "Infusion menthe Ritual Touareg bio", "desc": "Menthe poivrée", "price": 3.3 },
+            { "name": "Infusion aux fruits rouges Black Beauty", "price": 3.3 }
+          ]
+        },
+        {
+          "title": "Chocolats chauds et douceurs",
+          "items": [
+            { "name": "Chocolat chaud maison", "desc": "Chocolat blanc, noir ou au lait", "price": 4 },
+            { "name": "Chocolat chaud viennois maison", "desc": "Chocolat blanc, noir ou au lait", "price": 4.5 }
+          ]
+        },
+        {
+          "title": "Les chauds alcoolisés",
+          "items": [
+            { "name": "Irish Coffee", "price": 8.5 },
+            { "name": "French Coffee", "desc": "Cognac", "price": 8.5 },
+            { "name": "Baileys Coffee", "price": 8.5 },
+            { "name": "Italian Coffee", "price": 8.5 },
+            { "name": "Choco Baileys", "price": 8.5 },
+            { "name": "Choco Cointreau", "price": 8.5 },
+            { "name": "Choco Amaretto", "price": 8.5 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "desserts",
+      "title": "Desserts",
+      "summary": "Pâtisseries maison, crêpes et coupes glacées",
+      "groups": [
+        {
+          "title": "Nos classiques faits maison",
+          "items": [
+            { "name": "La Pistache Forever", "desc": "Pâte sablée, praliné et ganache montée pistache", "price": 8.5 },
+            { "name": "Le Choc'Olivia", "desc": "Bavarois chocolat, caramel, croûte de spéculoos et crème dulce", "price": 8.5, "tags": ["signature"] },
+            { "name": "La tarte citron meringuée", "price": 7 },
+            { "name": "Le tiramisu spéculoos", "price": 8 },
+            { "name": "La panacotta framboise", "price": 7 },
+            { "name": "Pecan nuts", "desc": "Sablé et praliné noix de pécan", "price": 8.5 },
+            { "name": "Tartelette amandine", "desc": "Frangipane poire amande", "price": 8.5 },
+            { "name": "L'ardoise gourmande", "desc": "Assortiment de 3 minis desserts, idéal pour accompagner votre thé ou café", "price": 9.5 }
+          ]
+        },
+        {
+          "title": "Les crêpes",
+          "items": [
+            { "name": "Crêpes au sucre", "price": 5 },
+            { "name": "Crêpes à la cassonade", "price": 5 },
+            { "name": "Crêpes au chocolat", "price": 6.5 },
+            { "name": "Crêpes Mikado", "price": 7.5 }
+          ]
+        },
+        {
+          "title": "Les glaces",
+          "items": [
+            { "name": "Dame blanche", "desc": "Glace vanille, chocolat chaud, chantilly", "price": 8 },
+            { "name": "Dame noire", "desc": "Glace chocolat, chocolat chaud, chantilly", "price": 8 },
+            { "name": "Coupe brésilienne", "desc": "Glace moka, glace vanille, caramel beurre salé maison, éclats de noisettes et chantilly", "price": 9 }
+          ]
+        }
+      ],
+      "seeAlso": { "href": "#boissons-chaudes", "label": "Cafés, thés et boissons chaudes" }
+    },
+    {
+      "id": "enfants",
+      "title": "Enfants",
+      "summary": "Cocktails, plats et coupe junior pour les plus jeunes",
+      "groups": [
+        {
+          "title": "Les cocktails",
+          "items": [
+            { "name": "Le Perroquet", "price": 5 },
+            { "name": "Virgin Mojito", "desc": "Fraise, passion ou framboise", "price": 9 }
+          ]
+        },
+        {
+          "title": "Les plats",
+          "items": [
+            { "name": "Nuggets faits maison", "desc": "Avec frites, ketchup et mayonnaise", "price": 12 },
+            { "name": "Pâtes crème jambon", "price": 12 },
+            { "name": "Steak haché de bœuf", "desc": "Frites, ketchup et mayonnaise", "price": 12 }
+          ]
+        },
+        {
+          "title": "Le dessert",
+          "items": [
+            { "name": "Coupe junior", "desc": "2 boules au choix : vanille, chocolat, moka ou fraise, avec ses granulés arc-en-ciel", "price": 5 }
+          ]
+        }
+      ]
+    }
+  ]
+}

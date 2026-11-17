@@ -1,0 +1,22 @@
+{
+  "name": "olivia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site et PWA du restaurant Olivia, Grand-Place de Tournai",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "test": "node build.mjs && node --test --test-timeout=120000 --test-reporter=spec tests/site.test.mjs",
+    "images": "node scripts/optimize-images.mjs",
+    "icons": "node scripts/make-icons.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.3",
+    "playwright": "^1.56.1",
+    "sharp": "^0.34.4"
+  }
+}

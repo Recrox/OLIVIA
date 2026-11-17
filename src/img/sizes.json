@@ -1,0 +1,41 @@
+{
+ "olivia-aquarelle": {
+  "w": 1536,
+  "h": 1536,
+  "widths": [
+   480,
+   800,
+   1200
+  ]
+ },
+ "planchette": {
+  "w": 1783,
+  "h": 802,
+  "widths": [
+   800,
+   1280,
+   1780
+  ]
+ },
+ "planche-italienne": {
+  "w": 521,
+  "h": 315,
+  "widths": [
+   520
+  ]
+ },
+ "burger-olivia": {
+  "w": 581,
+  "h": 315,
+  "widths": [
+   580
+  ]
+ },
+ "pluma-iberico": {
+  "w": 581,
+  "h": 315,
+  "widths": [
+   580
+  ]
+ }
+}

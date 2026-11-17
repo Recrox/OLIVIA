@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.shots/
+graphify-out/cache/
+.wrangler/
+notes.md
+outils Claude.md

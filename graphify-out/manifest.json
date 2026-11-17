@@ -1,0 +1,230 @@
+{
+  "build.mjs": {
+    "mtime": 1794947418.1916678,
+    "seen": 1794947978.11137,
+    "ast_hash": "d092005018101d017ed677a8ef1d4811",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1794947661.2251837,
+    "seen": 1794947978.11137,
+    "ast_hash": "4dc65507c0014d179586f2bc27576152",
+    "semantic_hash": ""
+  },
+  "scripts/make-icons.mjs": {
+    "mtime": 1794947535.7332263,
+    "seen": 1794947978.11137,
+    "ast_hash": "0aa923d827cc4bd2b4f9ef330ac918b9",
+    "semantic_hash": ""
+  },
+  "scripts/optimize-images.mjs": {
+    "mtime": 1794947266.6177127,
+    "seen": 1794947978.11137,
+    "ast_hash": "c36d4407ab3efa794550a2529f2f099a",
+    "semantic_hash": ""
+  },
+  "scripts/probe.mjs": {
+    "mtime": 1794946960.6164658,
+    "seen": 1794947978.11137,
+    "ast_hash": "2b936fb0d8d7d05992c064079b65aa80",
+    "semantic_hash": ""
+  },
+  "scripts/scrape-old-site.mjs": {
+    "mtime": 1794946783.579004,
+    "seen": 1794947978.11137,
+    "ast_hash": "fbc015ba76d12209fef4e5a1ea606fd2",
+    "semantic_hash": ""
+  },
+  "scripts/serve.mjs": {
+    "mtime": 1794947554.2353432,
+    "seen": 1794947978.11137,
+    "ast_hash": "8ff3fb05bbec14e8a4329df6f38c9738",
+    "semantic_hash": ""
+  },
+  "scripts/shots.mjs": {
+    "mtime": 1794947560.34681,
+    "seen": 1794947978.11137,
+    "ast_hash": "04cfccd6d9f5e41575e23f6dd9f2fee8",
+    "semantic_hash": ""
+  },
+  "src/img/sizes.json": {
+    "mtime": 1794947269.2806647,
+    "seen": 1794947978.11137,
+    "ast_hash": "7b91a3e859f00a632134a1ac4add4bfe",
+    "semantic_hash": ""
+  },
+  "src/main.js": {
+    "mtime": 1794947496.6110904,
+    "seen": 1794947978.11137,
+    "ast_hash": "a469e8a587460cd1d23bf644b8eb3d69",
+    "semantic_hash": ""
+  },
+  "src/menu.json": {
+    "mtime": 1794947253.2889369,
+    "seen": 1794947978.11137,
+    "ast_hash": "9011470c1a952d9639a4e5c141e3ee5e",
+    "semantic_hash": ""
+  },
+  "src/sw.js": {
+    "mtime": 1794947511.0158463,
+    "seen": 1794947978.11137,
+    "ast_hash": "fe05cea1f3a9b90c0b55e9aad2357b95",
+    "semantic_hash": ""
+  },
+  "tests/site.test.mjs": {
+    "mtime": 1794947661.339228,
+    "seen": 1794947978.11137,
+    "ast_hash": "99f7779a78384bcb770700bab502b722",
+    "semantic_hash": ""
+  },
+  "notes.md": {
+    "mtime": 1794946589.8529408,
+    "seen": 1794947978.11137,
+    "ast_hash": "75216e21325a0592d319baf4ad9ef2e6",
+    "semantic_hash": ""
+  },
+  "outils Claude.md": {
+    "mtime": 1794946538.818396,
+    "seen": 1794947978.11137,
+    "ast_hash": "44a2da19a5c0f45338261d01781f0897",
+    "semantic_hash": ""
+  },
+  "src/img/burger-olivia-580.webp": {
+    "mtime": 1794947269.191,
+    "seen": 1794947978.11137,
+    "ast_hash": "5d4b7235082a1c37a1e89bce24a5073c",
+    "semantic_hash": ""
+  },
+  "src/img/og-olivia.jpg": {
+    "mtime": 1794947545.7809722,
+    "seen": 1794947978.11137,
+    "ast_hash": "a4fa8e637eec613bd4eb29f7797f2b3b",
+    "semantic_hash": ""
+  },
+  "src/img/olivia-aquarelle-1200.webp": {
+    "mtime": 1794947268.179,
+    "seen": 1794947978.11137,
+    "ast_hash": "bc7f0c9b455d3bec41c979f842a3fd3e",
+    "semantic_hash": ""
+  },
+  "src/img/olivia-aquarelle-480.webp": {
+    "mtime": 1794947267.7,
+    "seen": 1794947978.11137,
+    "ast_hash": "bbbefa5e81b0f63cf2c981b86e9a49c8",
+    "semantic_hash": ""
+  },
+  "src/img/olivia-aquarelle-800.webp": {
+    "mtime": 1794947267.875,
+    "seen": 1794947978.11137,
+    "ast_hash": "d218c9a4a55190de14b9621834ecbaa6",
+    "semantic_hash": ""
+  },
+  "src/img/planche-italienne-520.webp": {
+    "mtime": 1794947269.085,
+    "seen": 1794947978.11137,
+    "ast_hash": "8c15d7ed906346fba9afe4d7127114f7",
+    "semantic_hash": ""
+  },
+  "src/img/planchette-1280.webp": {
+    "mtime": 1794947268.653,
+    "seen": 1794947978.11137,
+    "ast_hash": "863118cb0cab8762ec7b58c2f1002375",
+    "semantic_hash": ""
+  },
+  "src/img/planchette-1780.webp": {
+    "mtime": 1794947268.985,
+    "seen": 1794947978.11137,
+    "ast_hash": "5a04930582ea342ab0548bc87c984cfe",
+    "semantic_hash": ""
+  },
+  "src/img/planchette-800.webp": {
+    "mtime": 1794947268.343,
+    "seen": 1794947978.11137,
+    "ast_hash": "f3bb838dd772d161e9484417e4866a05",
+    "semantic_hash": ""
+  },
+  "src/img/pluma-iberico-580.webp": {
+    "mtime": 1794947269.279,
+    "seen": 1794947978.11137,
+    "ast_hash": "5d7b95d1ca6ec9fd10402239c5c1e7d1",
+    "semantic_hash": ""
+  },
+  "src/img/raw/beignets-courgette.jpg": {
+    "mtime": 1794947165.6409874,
+    "seen": 1794947978.11137,
+    "ast_hash": "c3d3c1e8a29627162f2fe363e76c21e4",
+    "semantic_hash": ""
+  },
+  "src/img/raw/burger-olivia.jpg": {
+    "mtime": 1794947165.599945,
+    "seen": 1794947978.11137,
+    "ast_hash": "fb2217df761c289bfc909e8d9ba8b3f2",
+    "semantic_hash": ""
+  },
+  "src/img/raw/olivia-aquarelle.jpg": {
+    "mtime": 1794947165.5606928,
+    "seen": 1794947978.11137,
+    "ast_hash": "9685cbbbc7f3502ea5578e3c3e9b6c65",
+    "semantic_hash": ""
+  },
+  "src/img/raw/planche-italienne.jpg": {
+    "mtime": 1794947165.658291,
+    "seen": 1794947978.11137,
+    "ast_hash": "433f4f6a0a96df42bd5bbd92f7c828dd",
+    "semantic_hash": ""
+  },
+  "src/img/raw/planchette.jpg": {
+    "mtime": 1794947165.5801399,
+    "seen": 1794947978.11137,
+    "ast_hash": "6597b7a3f6e38a295ddceeb39f9258a2",
+    "semantic_hash": ""
+  },
+  "src/img/raw/pluma-iberico.jpg": {
+    "mtime": 1794947165.6214426,
+    "seen": 1794947978.11137,
+    "ast_hash": "1901ac744b36af039619a1ee2231128e",
+    "semantic_hash": ""
+  },
+  "src/static/icons/apple-touch-icon.png": {
+    "mtime": 1794947545.577,
+    "seen": 1794947978.11137,
+    "ast_hash": "5fe29d932cf7805cbc3916dcbeb9dd2f",
+    "semantic_hash": ""
+  },
+  "src/static/icons/favicon-32.png": {
+    "mtime": 1794947545.571,
+    "seen": 1794947978.11137,
+    "ast_hash": "8baac9846cb7a2c5c419d02688713c55",
+    "semantic_hash": ""
+  },
+  "src/static/icons/favicon.svg": {
+    "mtime": 1794947545.5656116,
+    "seen": 1794947978.11137,
+    "ast_hash": "cae0646f8b4f757507ebd0dfd0a4e2d0",
+    "semantic_hash": ""
+  },
+  "src/static/icons/icon-192.png": {
+    "mtime": 1794947545.573,
+    "seen": 1794947978.11137,
+    "ast_hash": "f4f3a915d6a9cc2075606a45afe75cfe",
+    "semantic_hash": ""
+  },
+  "src/static/icons/icon-512.png": {
+    "mtime": 1794947545.577,
+    "seen": 1794947978.11137,
+    "ast_hash": "c71f3e2ab720866660d008b2f782d11b",
+    "semantic_hash": ""
+  },
+  "src/static/icons/maskable-512.png": {
+    "mtime": 1794947545.585,
+    "seen": 1794947978.11137,
+    "ast_hash": "f2c9e3398e67fd00ba07ebafe5200c44",
+    "semantic_hash": ""
+  },
+  "package-lock.json": {
+    "mtime": 1794947661.2297199,
+    "seen": 1794947978.11137,
+    "ast_hash": "1248c8cfd4f451f805b5f5543e65555b",
+    "semantic_hash": ""
+  }
+}
