@@ -16,6 +16,16 @@ Toute la carte est dans **[src/menu.json](src/menu.json)**.
 
 L'application installée se met à jour seule : les pages sont toujours rechargées depuis le réseau quand il y en a, et une copie hors connexion de plus de 14 jours n'est jamais affichée (les prix changent).
 
+## Versions
+
+Numéro unique dans `package.json` (SemVer `MAJEUR.MINEUR.CORRECTIF`), détaillé dans [CHANGELOG.md](CHANGELOG.md). À chaque évolution :
+
+1. Mettre à jour `version` dans `package.json` et ajouter l'entrée correspondante en tête de `CHANGELOG.md` (un test vérifie que les deux concordent).
+2. `git commit`, puis `git tag -a vX.Y.Z -m "…"`.
+3. `git push` (les tags partent avec, grâce à `push.followTags`). Le déploiement Cloudflare porte le tag `vX.Y.Z`.
+
+Le numéro s'affiche en bas de chaque page. Pour revenir à une version : Cloudflare → *Deployments* (chaque version y est étiquetée), ou `npx wrangler rollback`.
+
 ## Commandes
 
 | Commande | Rôle |

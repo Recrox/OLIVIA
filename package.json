@@ -1,6 +1,6 @@
 {
   "name": "olivia",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "private": true,
   "description": "Site et PWA du restaurant Olivia, Grand-Place de Tournai",
   "type": "module",

@@ -178,6 +178,16 @@ test('accessibility: no axe violations', async () => {
   await page.close();
 });
 
+test('version: the site shows the package.json version', async () => {
+  const { version } = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+  assert.match(version, /^\d+\.\d+\.\d+$/);
+  assert.ok(fs.readFileSync('CHANGELOG.md', 'utf8').includes(`## [${version}]`), 'CHANGELOG.md has no entry for this version');
+  const page = await browser.newPage();
+  await page.goto(BASE + '/');
+  assert.equal(await page.textContent('[data-version]'), 'v' + version);
+  await page.close();
+});
+
 test('SEO: titles, descriptions, canonical, structured data', async () => {
   const page = await browser.newPage();
   for (const path of ['/', '/carte/']) {

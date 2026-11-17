@@ -15,6 +15,7 @@ const SOCIAL = {
 };
 
 const menu = JSON.parse(fs.readFileSync('src/menu.json', 'utf8'));
+const { version: APP_VERSION } = JSON.parse(fs.readFileSync('package.json', 'utf8')); // semver, see CHANGELOG.md
 const sizes = JSON.parse(fs.readFileSync('src/img/sizes.json', 'utf8'));
 
 // ---------- helpers ----------
@@ -90,6 +91,7 @@ const page = ({ path, title, description, body, ld = [], bodyClass = '' }) => `<
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
 <meta name="theme-color" content="#f6f1e8">
+<meta name="version" content="${APP_VERSION}">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
 <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
@@ -165,7 +167,7 @@ function footer() {
   </div>
   <div class="wrap footer-base muted">
     <p>Pour toute information sur les allergènes, adressez-vous au personnel. La composition de nos produits peut varier d'un jour à l'autre.</p>
-    <p>© ${new Date().getFullYear()} Olivia, Tournai</p>
+    <p>© ${new Date().getFullYear()} Olivia, Tournai · <span data-version>v${APP_VERSION}</span></p>
   </div>
 </footer>`;
 }
@@ -412,7 +414,7 @@ write('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns
 
 // Service worker: version = hash of everything it caches, so any content change ships a new cache.
 const precache = ['/', '/carte/', '/offline/', cssFile, jsFile, '/fonts/fraunces.woff2', '/fonts/instrument-sans.woff2', '/icons/icon-192.png', '/manifest.webmanifest'];
-const version = hash(home + carte + offline + css + js);
+const version = `${APP_VERSION}-${hash(home + carte + offline + css + js)}`;
 write('dist/sw.js', fs.readFileSync('src/sw.js', 'utf8').replace('__VERSION__', version).replace('__PRECACHE__', JSON.stringify(precache)));
 
 console.log(`built dist/ (sw ${version}, ${menu.categories.reduce((n, c) => n + c.groups.reduce((m, g) => m + g.items.length, 0), 0)} menu items) for ${SITE}`);
