@@ -41,30 +41,35 @@ tests/site.test.mjs    tests de bout en bout
 .github/workflows/     tests puis déploiement Cloudflare Pages
 ```
 
-## Hébergement : Cloudflare Pages
+## Hébergement : Cloudflare (Pages, désormais intégré à Workers)
 
-Choisi pour : gratuit pour ce volume (bande passante illimitée sur l'offre gratuite), CDN avec points de présence à Bruxelles et Amsterdam, HTTPS automatique, domaine personnalisé gratuit, fichier `_headers` pris en charge, historique de chaque version avec retour arrière en un clic.
+**En ligne : https://olivia-tournai.recrox.workers.dev**
 
-### Première mise en ligne
+Choisi pour : gratuit pour un site vitrine (les fichiers statiques sont servis sans limite de requêtes sur l'offre gratuite), CDN mondial avec des points de présence en Belgique et aux Pays-Bas, HTTPS automatique, compression Brotli, domaine personnalisé sans surcoût, fichier `_headers` pris en charge, historique des versions avec retour arrière.
+Comparé à Netlify et Vercel (offres gratuites limitées en bande passante ou réservées à un usage non commercial) et à OVHcloud (hébergement payant, déploiement manuel par FTP, pas de CDN par défaut), c'est l'option la plus simple et la moins chère pour ce site.
 
-1. Créer un compte gratuit sur https://dash.cloudflare.com/sign-up.
-2. Dans ce dossier : `npx wrangler login`, puis
-   `npx wrangler pages project create olivia-tournai --production-branch=main`, puis
-   `npm run build && npx wrangler pages deploy dist --project-name=olivia-tournai --branch=main`.
-3. Le site est en ligne sur **https://olivia-tournai.pages.dev**.
+Configuration : [wrangler.jsonc](wrangler.jsonc) (sert `dist/`, page 404 personnalisée) et [src/static/_headers](src/static/_headers) (cache et sécurité).
+
+### Mettre en ligne depuis ce poste
+
+```
+npx wrangler login        # une fois
+npm test                  # build + tests
+npx wrangler deploy       # publie dist/
+```
 
 ### Déploiement automatique (GitHub)
 
-1. Créer un dépôt GitHub privé et y pousser ce dossier.
-2. Cloudflare → *My Profile → API Tokens → Create Token* → modèle « Edit Cloudflare Workers » ou permission *Cloudflare Pages : Edit*.
-3. GitHub → *Settings → Secrets and variables → Actions* : ajouter `CLOUDFLARE_API_TOKEN` et `CLOUDFLARE_ACCOUNT_ID` (visible dans le tableau de bord Cloudflare).
-4. Chaque `git push` sur `main` lance les tests puis déploie. Si un test échoue, rien n'est mis en ligne.
+1. Créer un dépôt GitHub **privé** et y pousser ce dossier (`git remote add origin …` puis `git push -u origin main`).
+2. Cloudflare → *My Profile → API Tokens → Create Token* → modèle **Edit Cloudflare Workers**.
+3. GitHub → *Settings → Secrets and variables → Actions* : ajouter `CLOUDFLARE_API_TOKEN` et `CLOUDFLARE_ACCOUNT_ID` (identifiant visible dans le tableau de bord Cloudflare, colonne de droite).
+4. Chaque `git push` sur `main` lance les tests ([.github/workflows/deploy.yml](.github/workflows/deploy.yml)) puis déploie. Si un test échoue, rien n'est mis en ligne.
 
-**Revenir à une version précédente** : Cloudflare → *Workers & Pages → olivia-tournai → Deployments* → choisir une version → *Rollback to this deployment*. Ou `git revert` puis `git push`.
+**Revenir à une version précédente** : `npx wrangler rollback`, ou Cloudflare → *Workers & Pages → olivia-tournai → Deployments* → choisir une version → *Rollback*. Ou `git revert` puis `git push`.
 
 ### Nom de domaine personnalisé
 
-Aucun domaine existant n'a été trouvé sur l'ancien site (hébergé chez Adobe Express). Suggestions à vérifier chez un registrar (DNS Belgium liste les registrars agréés pour le `.be`), environ 10 à 15 € par an :
+Aucun domaine existant n'a été trouvé (l'ancien site est une page Adobe Express sans domaine propre). Suggestions à vérifier chez un registrar agréé `.be` (liste sur dnsbelgium.be), environ 10 à 15 € par an :
 
 - `olivia-tournai.be` (recommandé : nom + ville, clair pour le référencement local)
 - `oliviatournai.be`
@@ -73,15 +78,13 @@ Aucun domaine existant n'a été trouvé sur l'ancien site (hébergé chez Adobe
 
 Une fois le domaine acheté :
 
-1. Cloudflare → *olivia-tournai → Custom domains → Set up a custom domain* → saisir `www.olivia-tournai.be`, puis répéter pour `olivia-tournai.be`.
-2. **Le plus simple** : confier les DNS du domaine à Cloudflare (gratuit). Cloudflare indique deux serveurs de noms (ex. `xxx.ns.cloudflare.com`) à copier chez le registrar. Les enregistrements sont alors créés automatiquement.
-3. **Si les DNS restent chez le registrar** :
-   - `www` → enregistrement **CNAME** vers `olivia-tournai.pages.dev`
-   - domaine nu `olivia-tournai.be` → **CNAME à la racine** (« ALIAS/ANAME/CNAME flattening ») vers `olivia-tournai.pages.dev` si le registrar le permet ; sinon redirection web du domaine nu vers `https://www.olivia-tournai.be` (Pages ne fournit pas d'adresse IP fixe pour un enregistrement **A**).
-   - Garder les enregistrements **MX** existants si une adresse e-mail utilise ce domaine.
-4. Le certificat HTTPS est émis automatiquement (quelques minutes).
-5. Dans GitHub → *Settings → Variables*, ajouter `SITE_URL = https://www.olivia-tournai.be` pour que les liens canoniques, le sitemap et les données Schema.org utilisent le bon domaine, puis relancer un déploiement.
-6. Remplacer le lien de la bio Instagram / Facebook et la fiche Google Business par la nouvelle adresse.
+1. Cloudflare → *Add a domain* → saisir `olivia-tournai.be` → offre **Free**.
+2. Cloudflare affiche deux **serveurs de noms** (ex. `xxx.ns.cloudflare.com`). Chez le registrar, remplacer les serveurs de noms du domaine par ces deux-là. Cloudflare importe les enregistrements existants : vérifier que les **MX** (e-mail) éventuels sont conservés. Propagation : de quelques minutes à 24 h.
+   - Un simple CNAME chez le registrar ne suffit pas : les domaines personnalisés de Cloudflare Workers exigent que les DNS soient gérés par Cloudflare. Aucun enregistrement **A** n'est à créer à la main.
+3. *Workers & Pages → olivia-tournai → Settings → Domains & Routes → Add → Custom domain* : ajouter `olivia-tournai.be`, puis `www.olivia-tournai.be`. Cloudflare crée les enregistrements DNS et le certificat HTTPS automatiquement.
+4. Dans le domaine : *SSL/TLS → Edge Certificates → Always Use HTTPS* : activé.
+5. Mettre à jour l'adresse du site : `SITE_URL` dans [build.mjs](build.mjs) (ou variable GitHub `SITE_URL`), puis redéployer. Les liens canoniques, le sitemap et Schema.org utiliseront le nouveau domaine.
+6. Mettre le nouveau lien dans la bio Instagram et Facebook, et sur la fiche Google Business Profile.
 
 ## Informations à compléter
 

@@ -9,7 +9,9 @@
     "serve": "node scripts/serve.mjs",
     "test": "node build.mjs && node --test --test-timeout=120000 --test-reporter=spec tests/site.test.mjs",
     "images": "node scripts/optimize-images.mjs",
-    "icons": "node scripts/make-icons.mjs"
+    "icons": "node scripts/make-icons.mjs",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "engines": {
     "node": ">=20"
@@ -17,6 +19,7 @@
   "devDependencies": {
     "axe-core": "^4.10.3",
     "playwright": "^1.56.1",
-    "sharp": "^0.34.4"
+    "sharp": "^0.34.4",
+    "wrangler": "^4.164.0"
   }
 }

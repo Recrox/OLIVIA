@@ -1,14 +1,14 @@
 {
   "build.mjs": {
-    "mtime": 1794947418.1916678,
-    "seen": 1794947978.11137,
-    "ast_hash": "d092005018101d017ed677a8ef1d4811",
+    "mtime": 1794948775.5710714,
+    "seen": 1794948982.950145,
+    "ast_hash": "12f40001c66560bfe82ea342915911fb",
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1794947661.2251837,
-    "seen": 1794947978.11137,
-    "ast_hash": "4dc65507c0014d179586f2bc27576152",
+    "mtime": 1794948730.0908842,
+    "seen": 1794948982.950145,
+    "ast_hash": "1452327f86717d120a86f20d77bcb26e",
     "semantic_hash": ""
   },
   "scripts/make-icons.mjs": {
@@ -23,16 +23,10 @@
     "ast_hash": "c36d4407ab3efa794550a2529f2f099a",
     "semantic_hash": ""
   },
-  "scripts/probe.mjs": {
-    "mtime": 1794946960.6164658,
-    "seen": 1794947978.11137,
-    "ast_hash": "2b936fb0d8d7d05992c064079b65aa80",
-    "semantic_hash": ""
-  },
   "scripts/scrape-old-site.mjs": {
-    "mtime": 1794946783.579004,
-    "seen": 1794947978.11137,
-    "ast_hash": "fbc015ba76d12209fef4e5a1ea606fd2",
+    "mtime": 1794947999.6645708,
+    "seen": 1794948982.950145,
+    "ast_hash": "c52753d4a7ce9247c234596c550e578b",
     "semantic_hash": ""
   },
   "scripts/serve.mjs": {
@@ -54,9 +48,9 @@
     "semantic_hash": ""
   },
   "src/main.js": {
-    "mtime": 1794947496.6110904,
-    "seen": 1794947978.11137,
-    "ast_hash": "a469e8a587460cd1d23bf644b8eb3d69",
+    "mtime": 1794948471.752813,
+    "seen": 1794948982.950145,
+    "ast_hash": "15834c1b39e372e14f56cade69dd8bfe",
     "semantic_hash": ""
   },
   "src/menu.json": {
@@ -66,27 +60,15 @@
     "semantic_hash": ""
   },
   "src/sw.js": {
-    "mtime": 1794947511.0158463,
-    "seen": 1794947978.11137,
-    "ast_hash": "fe05cea1f3a9b90c0b55e9aad2357b95",
+    "mtime": 1794948186.473731,
+    "seen": 1794948982.950145,
+    "ast_hash": "9976043276f93638db143a502a185ab7",
     "semantic_hash": ""
   },
   "tests/site.test.mjs": {
-    "mtime": 1794947661.339228,
-    "seen": 1794947978.11137,
-    "ast_hash": "99f7779a78384bcb770700bab502b722",
-    "semantic_hash": ""
-  },
-  "notes.md": {
-    "mtime": 1794946589.8529408,
-    "seen": 1794947978.11137,
-    "ast_hash": "75216e21325a0592d319baf4ad9ef2e6",
-    "semantic_hash": ""
-  },
-  "outils Claude.md": {
-    "mtime": 1794946538.818396,
-    "seen": 1794947978.11137,
-    "ast_hash": "44a2da19a5c0f45338261d01781f0897",
+    "mtime": 1794948851.5391695,
+    "seen": 1794948982.950145,
+    "ast_hash": "7f00c393203b5e6fea90d2705803062a",
     "semantic_hash": ""
   },
   "src/img/burger-olivia-580.webp": {
@@ -221,10 +203,22 @@
     "ast_hash": "f2c9e3398e67fd00ba07ebafe5200c44",
     "semantic_hash": ""
   },
+  ".github/workflows/deploy.yml": {
+    "mtime": 1794948776.539159,
+    "seen": 1794948982.950145,
+    "ast_hash": "5f63d96066daf4d47876753829652503",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1794948976.116144,
+    "seen": 1794948982.950145,
+    "ast_hash": "857082e1bb6a1e0efda82b9db0062098",
+    "semantic_hash": ""
+  },
   "package-lock.json": {
-    "mtime": 1794947661.2297199,
-    "seen": 1794947978.11137,
-    "ast_hash": "1248c8cfd4f451f805b5f5543e65555b",
+    "mtime": 1794948730.0528798,
+    "seen": 1794948982.950145,
+    "ast_hash": "c0b047d4ec4147e995e83af6c739827d",
     "semantic_hash": ""
   }
 }

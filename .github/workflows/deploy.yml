@@ -1,5 +1,5 @@
-# Every push: build + full test suite. Push on main: deploy to Cloudflare Pages only if tests pass.
-# Required repository secrets: CLOUDFLARE_API_TOKEN (Pages:Edit), CLOUDFLARE_ACCOUNT_ID.
+# Every push: build + full test suite. Push on main: deploy to Cloudflare (static assets, wrangler.jsonc) only if tests pass.
+# Required repository secrets: CLOUDFLARE_API_TOKEN ("Edit Cloudflare Workers" template), CLOUDFLARE_ACCOUNT_ID.
 # Optional repository variable: SITE_URL (e.g. https://www.olivia-tournai.be) once the domain is connected.
 name: test-and-deploy
 
@@ -37,11 +37,12 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
-      - run: npx wrangler@4 pages deploy dist --project-name=olivia-tournai --branch=main --commit-dirty=true
+      - run: npx wrangler@4 deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

@@ -6,6 +6,7 @@ import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
 import { server } from '../scripts/serve.mjs';
 
+process.env.PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS = '1'; // lets context.route() see service worker requests
 let BASE = process.env.BASE_URL; // set BASE_URL to test the live site; otherwise dist/ is served on a free port
 const local = !BASE;
 const VIEWPORTS = { phone: [375, 812], tablet: [768, 1024], laptop: [1366, 768], hd: [1440, 900], fhd: [1920, 1080], qhd: [2560, 1440] };
@@ -91,7 +92,7 @@ test('menu page: tabs follow the scroll', async () => {
 
 test('accessibility: no axe violations', async () => {
   // reduced motion: otherwise axe measures contrast mid fade-in
-  const page = await browser.newPage({ reducedMotion: 'reduce' });
+  const page = await browser.newPage({ reducedMotion: 'reduce', bypassCSP: true }); // the site's CSP blocks injected axe
   for (const path of PAGES) {
     await page.goto(BASE + path);
     await page.addScriptTag({ content: axeSource });
@@ -130,14 +131,13 @@ test('PWA: manifest, icons, service worker, offline', async () => {
   await page.reload();
   assert.ok(await page.evaluate(() => !!navigator.serviceWorker.controller), 'page not controlled by the service worker');
 
-  // setOffline does not cut the service worker's own fetches, so also stop the local server.
+  // setOffline does not cut the service worker's own fetches; routing does (see env flag at the top).
   await ctx.setOffline(true);
-  if (local) { server.closeAllConnections(); await new Promise(r => server.close(r)); }
+  await ctx.route('**/*', r => r.abort('internetdisconnected'));
   await page.goto(BASE + '/carte/');
   assert.equal(await page.textContent('h1'), 'La carte');
   assert.equal(await page.isVisible('.offline-note'), true, 'offline note on the cached menu');
   await page.goto(BASE + '/page-jamais-visitee/');
   assert.match(await page.textContent('h1'), /Pas de réseau/);
-  await ctx.setOffline(false);
   await ctx.close();
 });

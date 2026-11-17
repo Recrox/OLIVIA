@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 
-const SITE = (process.env.SITE_URL || 'https://olivia-tournai.pages.dev').replace(/\/$/, '');
+const SITE = (process.env.SITE_URL || 'https://olivia-tournai.recrox.workers.dev').replace(/\/$/, '');
 const PHONE = { display: '069 81 73 20', tel: '+3269817320', intl: '+32 69 81 73 20' };
 const ADDRESS = { street: 'Grand-Place', city: 'Tournai', zip: '7500', country: 'BE' };
 const MAPS = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Olivia, Grand-Place, 7500 Tournai');
