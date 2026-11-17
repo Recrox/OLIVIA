@@ -60,6 +60,22 @@ installBtn?.addEventListener('click', async () => {
   if (outcome === 'accepted') installBtn.hidden = true;
 });
 
+// Theme: light by default; the toggle switches to dark and remembers it.
+const themeBtn = document.querySelector('[data-theme-toggle]');
+const themeMeta = document.querySelector('meta[name="theme-color"]');
+const applyTheme = dark => {
+  if (dark) document.documentElement.dataset.theme = 'dark';
+  else delete document.documentElement.dataset.theme;
+  themeBtn?.setAttribute('aria-pressed', String(dark));
+  themeMeta?.setAttribute('content', dark ? '#161513' : '#f6f1e8');
+};
+applyTheme(document.documentElement.dataset.theme === 'dark');
+themeBtn?.addEventListener('click', () => {
+  const dark = document.documentElement.dataset.theme !== 'dark';
+  applyTheme(dark);
+  try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch {}
+});
+
 // Map: swap the placeholder for the Google Maps embed on tap.
 document.querySelector('[data-map]')?.addEventListener('click', e => {
   e.preventDefault();

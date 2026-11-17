@@ -8,6 +8,13 @@ Toutes les évolutions du site d'Olivia. Numérotation [SemVer](https://semver.o
 
 La version affichée en bas du site, le tag Git `vX.Y.Z` et la version Cloudflare portent le même numéro.
 
+## [1.5.0] - 2026-11-17
+### Ajouté
+- Thème sombre, désactivé par défaut : icône lune/soleil dans l'en-tête, choix mémorisé sur l'appareil, appliqué avant l'affichage (pas de flash blanc).
+- Le portrait d'Olivia s'affiche en médaillon rond sur fond sombre.
+### Modifié
+- Sur les plus petits téléphones (moins de 400 px), le bouton d'installation n'affiche que son icône.
+
 ## [1.4.0] - 2026-11-17
 ### Ajouté
 - Système de versions : numéro dans `package.json`, affiché en pied de page, inscrit dans le cache hors connexion et dans chaque déploiement Cloudflare (`--tag`), tags Git et ce journal.
@@ -41,6 +48,7 @@ La version affichée en bas du site, le tag Git `vX.Y.Z` et la version Cloudflar
 - Référencement : Schema.org Restaurant et Menu, Open Graph, sitemap.
 - Tests Playwright (résolutions, liens, accessibilité, PWA) et déploiement Cloudflare automatisé.
 
+[1.5.0]: https://github.com/Recrox/OLIVIA/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/Recrox/OLIVIA/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/Recrox/OLIVIA/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/Recrox/OLIVIA/compare/v1.1.1...v1.2.0

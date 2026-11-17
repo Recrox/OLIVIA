@@ -188,6 +188,30 @@ test('version: the site shows the package.json version', async () => {
   await page.close();
 });
 
+test('dark theme: off by default, toggled from the header, remembered, accessible', async () => {
+  const ctx = await browser.newContext({ reducedMotion: 'reduce', bypassCSP: true, viewport: { width: 375, height: 812 } });
+  const page = await ctx.newPage();
+  const theme = () => page.evaluate(() => document.documentElement.dataset.theme || 'light');
+  await page.goto(BASE + '/');
+  assert.equal(await theme(), 'light');
+  assert.equal(await page.getAttribute('[data-theme-toggle]', 'aria-pressed'), 'false');
+  await page.click('[data-theme-toggle]');
+  assert.equal(await theme(), 'dark');
+  assert.equal(await page.getAttribute('[data-theme-toggle]', 'aria-pressed'), 'true');
+  await page.goto(BASE + '/carte/');
+  assert.equal(await theme(), 'dark', 'choice not remembered across pages');
+  for (const path of ['/', '/carte/']) {
+    await page.goto(BASE + path);
+    await page.addScriptTag({ content: axeSource });
+    const { violations } = await page.evaluate(() => axe.run(document, { runOnly: ['wcag2aa'] }));
+    assert.deepEqual(violations.map(v => `${v.id}: ${v.nodes.map(n => n.target).join(' ')}`), [], 'dark ' + path);
+  }
+  await page.click('[data-theme-toggle]');
+  await page.reload();
+  assert.equal(await theme(), 'light');
+  await ctx.close();
+});
+
 test('SEO: titles, descriptions, canonical, structured data', async () => {
   const page = await browser.newPage();
   for (const path of ['/', '/carte/']) {

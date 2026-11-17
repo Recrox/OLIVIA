@@ -32,6 +32,8 @@ const ICONS = {
   route: '<polygon points="3 11 22 2 13 21 11 13 3 11"/>',
   book: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
   arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+  moon: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
   chevron: '<path d="m6 9 6 6 6-6"/>',
   leaf: '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
   flame: '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
@@ -57,8 +59,11 @@ fs.rmSync('dist', { recursive: true, force: true });
 fs.mkdirSync('dist/assets', { recursive: true });
 const css = fs.readFileSync('src/styles.css', 'utf8');
 const js = fs.readFileSync('src/main.js', 'utf8');
+const themeJs = fs.readFileSync('src/theme.js', 'utf8');
 const cssFile = `/assets/styles.${hash(css)}.css`;
 const jsFile = `/assets/main.${hash(js)}.js`;
+const themeFile = `/assets/theme.${hash(themeJs)}.js`;
+fs.writeFileSync('dist' + themeFile, themeJs);
 fs.writeFileSync('dist' + cssFile, css);
 fs.writeFileSync('dist' + jsFile, js);
 fs.cpSync('src/img', 'dist/img', { recursive: true, filter: p => !/raw|sizes\.json/.test(p) });
@@ -112,6 +117,7 @@ const page = ({ path, title, description, body, ld = [], bodyClass = '' }) => `<
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<script src="${themeFile}"></script>
 <link rel="stylesheet" href="${cssFile}">
 <script src="${jsFile}" defer></script>
 ${[restaurantLd, ...ld].map(o => `<script type="application/ld+json">${JSON.stringify(o)}</script>`).join('\n')}
@@ -125,7 +131,8 @@ ${[restaurantLd, ...ld].map(o => `<script type="application/ld+json">${JSON.stri
       <a href="/carte/"${path === '/carte/' ? ' aria-current="page"' : ''}>La carte</a>
       <a href="/#infos" class="hide-sm">Infos pratiques</a>
     </nav>
-    <button class="btn btn-ghost btn-sm" type="button" data-install hidden>${icon('download')}<span>Installer<span class="hide-sm"> l'app</span></span></button>
+    <button class="btn btn-ghost btn-sm btn-icon theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Thème sombre">${icon('moon', 'icon icon-moon')}${icon('sun', 'icon icon-sun')}</button>
+    <button class="btn btn-ghost btn-sm" type="button" data-install aria-label="Installer l'application" hidden>${icon('download')}<span class="install-label">Installer<span class="hide-sm"> l'app</span></span></button>
     <a class="btn btn-primary btn-sm hide-sm" href="tel:${PHONE.tel}">${icon('phone')}Réserver</a>
   </div>
 </header>
@@ -413,8 +420,8 @@ write('dist/robots.txt', `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\
 write('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${['/', '/carte/'].map(p => `  <url><loc>${SITE}${p}</loc><lastmod>${menu.updated}</lastmod></url>`).join('\n')}\n</urlset>\n`);
 
 // Service worker: version = hash of everything it caches, so any content change ships a new cache.
-const precache = ['/', '/carte/', '/offline/', cssFile, jsFile, '/fonts/fraunces.woff2', '/fonts/instrument-sans.woff2', '/icons/icon-192.png', '/manifest.webmanifest'];
-const version = `${APP_VERSION}-${hash(home + carte + offline + css + js)}`;
+const precache = ['/', '/carte/', '/offline/', cssFile, jsFile, themeFile, '/fonts/fraunces.woff2', '/fonts/instrument-sans.woff2', '/icons/icon-192.png', '/manifest.webmanifest'];
+const version = `${APP_VERSION}-${hash(home + carte + offline + css + js + themeJs)}`;
 write('dist/sw.js', fs.readFileSync('src/sw.js', 'utf8').replace('__VERSION__', version).replace('__PRECACHE__', JSON.stringify(precache)));
 
 console.log(`built dist/ (sw ${version}, ${menu.categories.reduce((n, c) => n + c.groups.reduce((m, g) => m + g.items.length, 0), 0)} menu items) for ${SITE}`);

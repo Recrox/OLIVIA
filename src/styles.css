@@ -22,6 +22,9 @@
   --ink-2: #574e43;
   --ink-3: #6b6256;
   --line: rgb(31 27 22 / 0.12);
+  --line-strong: rgb(31 27 22 / 0.24);
+  --paper-3: #e8dfd0;
+  --glass: rgb(246 241 232 / 0.94);
 
   /* The one accent: spritz orange, taken from the original menu banners */
   --accent: #f29400;
@@ -42,6 +45,25 @@
   --header-h: 64px;
   --radius: 10px;
   --radius-lg: 16px;
+  color-scheme: light;
+}
+
+/* Dark theme: opt-in only (header toggle, remembered). Same warm world, by night. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #161513;
+  --paper-2: #211f1c;
+  --paper-3: #2b2825;
+  --card: #1c1a18;
+  --ink: #efe9de;
+  --ink-2: #c4bcb0;
+  --ink-3: #9b9488;
+  --line: rgb(239 233 222 / 0.12);
+  --line-strong: rgb(239 233 222 / 0.28);
+  --glass: rgb(22 21 19 / 0.92);
+  --accent-ink: #f5b04a;
+  --night: #0e0d0c;
+  --night-line: rgb(239 233 222 / 0.1);
 }
 
 /* ---------- base ---------- */
@@ -50,6 +72,7 @@ html { -webkit-text-size-adjust: 100%; scroll-padding-top: 72px; }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0;
+  transition: background-color 200ms var(--ease), color 200ms var(--ease);
   background: var(--paper);
   color: var(--ink);
   font: 400 1rem/1.6 var(--sans);
@@ -100,8 +123,10 @@ button { font: inherit; color: inherit; }
 .btn-sm { min-height: 40px; padding: 0 16px; font-size: 0.9375rem; }
 .btn-primary { background: var(--accent); color: var(--ink); }
 .btn-primary:hover { background: #e08800; }
-.btn-ghost { background: transparent; border-color: rgb(31 27 22 / 0.24); color: var(--ink); }
-.btn-ghost:hover { background: var(--paper-2); border-color: rgb(31 27 22 / 0.4); }
+.btn-ghost { background: transparent; border-color: var(--line-strong); color: var(--ink); }
+.btn-ghost:hover { background: var(--paper-2); border-color: var(--ink-3); }
+.btn-icon { width: 40px; min-height: 40px; padding: 0; flex: none; }
+.btn-primary { color: #1f1b16; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 .link-arrow { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; text-decoration: none; padding-block: 8px; }
@@ -126,7 +151,7 @@ button { font: inherit; color: inherit; }
   position: fixed; inset: auto 0 0 0; z-index: 30;
   display: grid; grid-template-columns: 1.3fr 1fr 1fr;
   gap: 8px; padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
-  background: rgb(246 241 232 / 0.94); border-top: 1px solid var(--line);
+  background: var(--glass); border-top: 1px solid var(--line);
   backdrop-filter: saturate(1.2) blur(12px); -webkit-backdrop-filter: saturate(1.2) blur(12px);
 }
 .action-bar a {
@@ -134,7 +159,7 @@ button { font: inherit; color: inherit; }
   min-height: 48px; border-radius: var(--radius); text-decoration: none; font-weight: 500; font-size: 0.9375rem;
   border: 1px solid var(--line);
 }
-.action-bar a:first-child { background: var(--accent); border-color: transparent; }
+.action-bar a:first-child { background: var(--accent); border-color: transparent; color: #1f1b16; }
 body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
 
 @media (max-width: 719px) { .hide-sm { display: none !important; } }
@@ -146,6 +171,8 @@ body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
 /* ---------- home: hero ---------- */
 .hero { display: grid; gap: 24px; padding-block: 32px 40px; align-items: center; }
 @media (max-width: 1023px) { .hero-art img { max-width: 300px; } }
+/* by night the portrait sits on its own paper, cut as a round plate, instead of melting into a page that is no longer paper */
+[data-theme="dark"] .hero-art img { mix-blend-mode: normal; filter: sepia(0.12) brightness(0.96); border-radius: 50%; -webkit-mask-image: none; mask-image: none; transform: scale(0.84); }
 .hero-text { display: grid; gap: 24px; justify-items: start; }
 /* The portrait's white paper melts into ours; the mask softens the photo's square crop. */
 .hero-art img {
@@ -258,7 +285,7 @@ body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
   border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--paper-2);
   text-decoration: none; transition: background-color 160ms var(--ease);
 }
-a.map:hover { background: #e8dfd0; }
+a.map:hover { background: var(--paper-3); }
 a.map .icon { width: 28px; height: 28px; color: var(--accent-ink); }
 .map-cta { font-weight: 500; font-size: 1.125rem; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
 .map-frame { padding: 0; border: 0; height: auto; }
@@ -286,7 +313,7 @@ a.map .icon { width: 28px; height: 28px; color: var(--accent-ink); }
 .carte-top { display: grid; gap: 12px; padding-block: 40px 24px; }
 .offline-note { padding: 12px 16px; border-radius: var(--radius); background: var(--paper-2); border: 1px solid var(--line); }
 
-.cat-nav { position: sticky; top: 0; z-index: 15; background: rgb(246 241 232 / 0.94); border-block: 1px solid var(--line); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.cat-nav { position: sticky; top: 0; z-index: 15; background: var(--glass); border-block: 1px solid var(--line); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .cat-nav-row { display: flex; flex-wrap: wrap; gap: 2px; padding-block: 8px; }
 .cat-nav a {
   flex: 1 1 auto; justify-content: center; padding: 10px 2px; min-height: 44px; display: inline-flex; align-items: center; font-size: 0.8125rem;
@@ -377,3 +404,8 @@ a.map .icon { width: 28px; height: 28px; color: var(--accent-ink); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* theme toggle */
+.theme-toggle .icon-sun, [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+@media (max-width: 399px) { [data-install] .install-label { display: none; } }
