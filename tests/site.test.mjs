@@ -152,6 +152,20 @@ test('install button: hidden by default, shown when installable, prompts; iPhone
   await ctx.close();
 });
 
+test('map: loads Google Maps inside the page on tap, allowed by the CSP', async () => {
+  const page = await browser.newPage();
+  const blocked = [];
+  page.on('console', m => /Content Security Policy/i.test(m.text()) && blocked.push(m.text()));
+  await page.goto(BASE + '/#infos');
+  assert.equal(await page.$('iframe'), null, 'Google must not load before the tap');
+  await page.click('[data-map]');
+  const frame = await page.waitForSelector('iframe.map-frame');
+  assert.ok((await frame.getAttribute('src')).startsWith('https://www.google.com/maps?output=embed'));
+  await page.waitForTimeout(2500);
+  assert.deepEqual(blocked, []);
+  await page.close();
+});
+
 test('accessibility: no axe violations', async () => {
   // reduced motion: otherwise axe measures contrast mid fade-in
   const page = await browser.newPage({ reducedMotion: 'reduce', bypassCSP: true }); // the site's CSP blocks injected axe

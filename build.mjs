@@ -7,6 +7,7 @@ const SITE = (process.env.SITE_URL || 'https://olivia-tournai.recrox.workers.dev
 const PHONE = { display: '069 81 73 20', tel: '+3269817320', intl: '+32 69 81 73 20' };
 const ADDRESS = { street: 'Grand-Place', city: 'Tournai', zip: '7500', country: 'BE' };
 const MAPS = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Olivia, Grand-Place, 7500 Tournai');
+const MAP_EMBED = 'https://www.google.com/maps?output=embed&hl=fr&z=17&q=' + encodeURIComponent('Olivia, Grand-Place, 7500 Tournai');
 const ROUTE = 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('Olivia, Grand-Place, 7500 Tournai');
 const SOCIAL = {
   instagram: 'https://www.instagram.com/olivia_boire.et.manger/',
@@ -304,7 +305,6 @@ const home = page({
       <p class="info-value">${ADDRESS.street}<br>${ADDRESS.zip} ${ADDRESS.city}</p>
       <div class="actions">
         <a class="btn btn-primary" href="${ROUTE}" rel="noopener" target="_blank">${icon('route')}Itinéraire</a>
-        <a class="btn btn-ghost" href="${MAPS}" rel="noopener" target="_blank">${icon('pin')}Google Maps</a>
       </div>
     </div>
     <div class="info">
@@ -320,6 +320,12 @@ const home = page({
       </ul>
     </div>
   </div>
+  <!-- Google is only contacted on tap (no third-party cookies without consent); without JS the link opens Google Maps. -->
+  <a class="map" href="${MAPS}" rel="noopener" target="_blank" data-map="${MAP_EMBED}">
+    ${icon('pin')}
+    <span class="map-cta">Afficher le plan</span>
+    <span class="muted">Grand-Place, ${ADDRESS.zip} ${ADDRESS.city} · plan fourni par Google Maps</span>
+  </a>
 </section>
 `,
 });

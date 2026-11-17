@@ -60,6 +60,18 @@ installBtn?.addEventListener('click', async () => {
   if (outcome === 'accepted') installBtn.hidden = true;
 });
 
+// Map: swap the placeholder for the Google Maps embed on tap.
+document.querySelector('[data-map]')?.addEventListener('click', e => {
+  e.preventDefault();
+  const frame = document.createElement('iframe');
+  frame.className = 'map map-frame';
+  frame.src = e.currentTarget.dataset.map;
+  frame.title = 'Plan : Olivia sur la Grand-Place de Tournai';
+  frame.allowFullscreen = true;
+  frame.referrerPolicy = 'no-referrer-when-downgrade';
+  e.currentTarget.replaceWith(frame);
+});
+
 // Offline: the menu may be a cached copy, so say so.
 const note = document.querySelector('.offline-note');
 const syncOnline = () => { if (note) note.hidden = navigator.onLine; };
