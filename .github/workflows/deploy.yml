@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # ubuntu-latest (26.04) is not supported by Playwright 1.56
     env:
       SITE_URL: ${{ vars.SITE_URL }}
     steps:
@@ -35,7 +35,7 @@ jobs:
   deploy:
     needs: test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # ubuntu-latest (26.04) is not supported by Playwright 1.56
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
