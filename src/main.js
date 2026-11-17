@@ -12,6 +12,8 @@ const toast = (text, action) => {
     el.append(b);
   }
   el.hidden = false;
+  clearTimeout(toast.timer);
+  if (!action) toast.timer = setTimeout(() => { el.hidden = true; }, 8000);
 };
 
 // Service worker + "new version" notice. A waiting worker only takes over when the visitor agrees.
@@ -38,27 +40,25 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Install: Android/Chrome gives a prompt event; iOS needs a hint.
-const install = document.querySelector('.install');
+// Install button (header): Android and desktop Chrome/Edge give a prompt event; iOS only allows a manual add.
+const installBtn = document.querySelector('[data-install]');
+const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+const ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 let deferred;
-window.addEventListener('beforeinstallprompt', e => {
+addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
   deferred = e;
-  if (install) install.hidden = false;
+  installBtn.hidden = false;
 });
-document.querySelector('[data-install]')?.addEventListener('click', async () => {
-  if (!deferred) return;
+addEventListener('appinstalled', () => { installBtn.hidden = true; });
+if (ios && !standalone) installBtn.hidden = false;
+installBtn?.addEventListener('click', async () => {
+  if (!deferred) return toast("Pour installer Olivia : touchez Partager, puis « Sur l'écran d'accueil »");
   deferred.prompt();
-  await deferred.userChoice;
+  const { outcome } = await deferred.userChoice;
   deferred = null;
-  install.hidden = true;
+  if (outcome === 'accepted') installBtn.hidden = true;
 });
-const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
-if (install && !standalone && /iphone|ipad|ipod/i.test(navigator.userAgent)) {
-  install.hidden = false;
-  install.querySelector('[data-install]').hidden = true;
-  install.querySelector('.ios-hint').hidden = false;
-}
 
 // Offline: the menu may be a cached copy, so say so.
 const note = document.querySelector('.offline-note');

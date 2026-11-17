@@ -115,6 +115,8 @@ button { font: inherit; color: inherit; }
 .wordmark { font-size: 1.75rem; line-height: 1; text-decoration: none; letter-spacing: -0.02em; margin-right: auto; }
 .wordmark-lg { font-size: 2.5rem; margin-bottom: 8px; }
 .main-nav { display: flex; gap: 4px; }
+.header-row { gap: 12px; }
+@media (max-width: 719px) { .header-row .main-nav a { padding-inline: 8px; } .header-row [data-install] { padding-inline: 12px; gap: 6px; } }
 .main-nav a { padding: 8px 12px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: background-color 160ms var(--ease); }
 .main-nav a:hover { background: var(--paper-2); }
 .main-nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px; }
@@ -193,11 +195,12 @@ body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
 @media (max-width: 1023px) { .carte-index-intro picture { display: none; } }
 @media (max-width: 719px) {
   .carte-index { gap: 24px; }
-  .index-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; border-top: 0; }
+  .index-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; border-top: 0; }
   .index-list li:last-child:nth-child(odd) { grid-column: span 2; }
   .index-list a { grid-template-columns: 1fr 18px; gap: 8px; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
-  .index-num, .index-sum { display: none; }
-  .index-title { font-size: 1.375rem; }
+  .index-num, .index-sum, .index-list .icon { display: none; }
+  .index-list a { grid-template-columns: 1fr; }
+  .index-title { font-size: clamp(1.1875rem, 5.5vw, 1.375rem); }
 }
 @media (min-width: 1024px) {
   .carte-index { grid-template-columns: 5fr 7fr; gap: 80px; }
@@ -259,7 +262,6 @@ body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
 .footer-title { font-size: 0.9375rem; font-weight: 500; color: var(--ink-3); margin-bottom: 8px; }
 .site-footer address a { text-decoration: none; }
 .footer-base { display: grid; gap: 8px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
-.install { display: grid; gap: 8px; justify-items: start; align-content: start; }
 @media (max-width: 719px) {
   .site-footer { padding-block: 40px 24px; }
   .footer-grid { gap: 20px; }

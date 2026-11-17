@@ -122,6 +122,7 @@ ${[restaurantLd, ...ld].map(o => `<script type="application/ld+json">${JSON.stri
       <a href="/carte/"${path === '/carte/' ? ' aria-current="page"' : ''}>La carte</a>
       <a href="/#infos" class="hide-sm">Infos pratiques</a>
     </nav>
+    <button class="btn btn-ghost btn-sm" type="button" data-install hidden>${icon('download')}<span>Installer<span class="hide-sm"> l'app</span></span></button>
     <a class="btn btn-primary btn-sm hide-sm" href="tel:${PHONE.tel}">${icon('phone')}Réserver</a>
   </div>
 </header>
@@ -159,11 +160,6 @@ function footer() {
         <li><a href="${SOCIAL.instagram}" rel="noopener" target="_blank">${icon('instagram')}Instagram</a></li>
         <li><a href="${SOCIAL.facebook}" rel="noopener" target="_blank">${icon('facebook')}Facebook</a></li>
       </ul>
-    </div>
-    <div class="install" hidden>
-      <h2 class="footer-title">Application</h2>
-      <button class="btn btn-ghost btn-sm" type="button" data-install>${icon('download')}Installer Olivia</button>
-      <p class="muted ios-hint" hidden>Sur iPhone : touchez Partager puis « Sur l'écran d'accueil »</p>
     </div>
   </div>
   <div class="wrap footer-base muted">

@@ -9,7 +9,7 @@ import { server } from '../scripts/serve.mjs';
 process.env.PW_EXPERIMENTAL_SERVICE_WORKER_NETWORK_EVENTS = '1'; // lets context.route() see service worker requests
 let BASE = process.env.BASE_URL; // set BASE_URL to test the live site; otherwise dist/ is served on a free port
 const local = !BASE;
-const VIEWPORTS = { phone: [375, 812], tablet: [768, 1024], laptop: [1366, 768], hd: [1440, 900], fhd: [1920, 1080], qhd: [2560, 1440] };
+const VIEWPORTS = { small: [320, 640], phone: [375, 812], tablet: [768, 1024], laptop: [1366, 768], hd: [1440, 900], fhd: [1920, 1080], qhd: [2560, 1440] };
 const PAGES = ['/', '/carte/', '/offline/'];
 const CATS = ['restaurant', 'tapas', 'boissons', 'desserts', 'enfants'];
 const axeSource = fs.readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8');
@@ -125,6 +125,31 @@ test('menu page: one category at a time, tabs, swipe and back button', async () 
   assert.deepEqual(await shown(), ['boissons']);
   assert.equal(await page.$eval('#boissons-chaudes', d => d.open), true);
   await page.close();
+});
+
+test('install button: hidden by default, shown when installable, prompts; iPhone gets instructions', async () => {
+  const page = await browser.newPage({ viewport: { width: 320, height: 640 } });
+  await page.goto(BASE + '/');
+  assert.equal(await page.isVisible('[data-install]'), false);
+  await page.evaluate(() => {
+    const e = new Event('beforeinstallprompt', { cancelable: true });
+    e.prompt = () => { window.__prompted = true; };
+    e.userChoice = Promise.resolve({ outcome: 'accepted' });
+    dispatchEvent(e);
+  });
+  assert.equal(await page.isVisible('[data-install]'), true);
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'header overflows with the button');
+  await page.click('[data-install]');
+  assert.equal(await page.evaluate(() => window.__prompted), true);
+  await page.waitForSelector('[data-install]', { state: 'hidden' });
+  await page.close();
+
+  const ctx = await browser.newContext({ userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1', viewport: { width: 390, height: 844 } });
+  const ios = await ctx.newPage();
+  await ios.goto(BASE + '/');
+  await ios.click('[data-install]');
+  assert.match(await ios.textContent('.toast'), /Sur l'écran d'accueil/);
+  await ctx.close();
 });
 
 test('accessibility: no axe violations', async () => {
